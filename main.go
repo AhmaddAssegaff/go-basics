@@ -10,7 +10,7 @@ import (
 
 func main() {
 	fmt.Println("start main")
-	// basics()
+	basics()
 
 	// fmt.Println("sum3Number(1, 2, 3) =", sum3Number(1, 2, 3)) // 6
 	// fmt.Println("sum3Number(3, 5, 7) =", sum3Number(3, 5, 7)) // 15

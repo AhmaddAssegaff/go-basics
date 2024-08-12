@@ -5,9 +5,9 @@ import "fmt"
 func main() {
 	fmt.Println("hello world")
 
-	// arraySign([]int{2, 1})                    // 1
-	// arraySign([]int{-2, 1})                   // -1
-	// arraySign([]int{-1, -2, -3, -4, 3, 2, 1}) // 1
+	arraySign([]int{2, 1})                    // 1
+	arraySign([]int{-2, 1})                   // -1
+	arraySign([]int{-1, -2, -3, -4, 3, 2, 1}) // 1
 
 	// isAnagram("anak", "kana") // true
 	// isAnagram("anak", "mana") // false
@@ -28,7 +28,19 @@ func main() {
 func arraySign(nums []int) int {
 	// write code here
 
-	return 1 // if positive
+	a := 1
+
+	for _, num := range nums {
+		if num == 0 {
+			return 0
+		}
+		if num <= 0 {
+			a *= -1
+		}
+	}
+	fmt.Println("hasil array Sign =", a)
+
+	return a // if positive
 	// return -1 // if negative
 }
 
