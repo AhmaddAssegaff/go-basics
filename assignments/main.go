@@ -1,6 +1,9 @@
 package main
 
-import "fmt"
+import (
+	"fmt"
+	"strings"
+)
 
 func main() {
 	fmt.Println("hello world")
@@ -9,9 +12,9 @@ func main() {
 	arraySign([]int{-2, 1})                   // -1
 	arraySign([]int{-1, -2, -3, -4, 3, 2, 1}) // 1
 
-	// isAnagram("anak", "kana") // true
-	// isAnagram("anak", "mana") // false
-	// isAnagram("anagram", "managra") // true
+	isAnagram("anak", "kana")       // true
+	isAnagram("anak", "mana")       // false
+	isAnagram("anagram", "managra") // true
 
 	// findTheDifference("abcd", "abcde") // 'e'
 	// findTheDifference("abcd", "abced") // 'e'
@@ -46,8 +49,28 @@ func arraySign(nums []int) int {
 
 // https://leetcode.com/problems/valid-anagram
 func isAnagram(s string, t string) bool {
-	// write code here
-	return false
+	mapIsiStr := make(map[string]int)
+	arrayS := strings.Split(s, "")
+	arrayT := strings.Split(t, "")
+
+	for _, karakterS := range arrayS {
+		mapIsiStr[karakterS]++
+	}
+
+	for _, karakterT := range arrayT {
+		mapIsiStr[karakterT]--
+	}
+
+	for _, hasil := range mapIsiStr {
+		if hasil != 0 {
+			fmt.Println(s, "dan", t, false)
+			return false
+		}
+	}
+	fmt.Println(s, "dan", t, true)
+	// fmt.Println(mapIsiStr)
+
+	return true
 }
 
 // https://leetcode.com/problems/find-the-difference
