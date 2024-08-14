@@ -2,6 +2,7 @@ package main
 
 import (
 	"fmt"
+	"sort"
 	"strings"
 )
 
@@ -20,9 +21,9 @@ func main() {
 	fmt.Println(findTheDifference("abcd", "abced")) // 'e'
 	fmt.Println(findTheDifference("", "y"))         // 'y'
 
-	// canMakeArithmeticProgression([]int{1, 5, 3})    // true; 1, 3, 5 adalah baris aritmatik +2
-	// canMakeArithmeticProgression([]int{5, 1, 9})    // true; 9, 5, 1 adalah baris aritmatik -4
-	// canMakeArithmeticProgression([]int{1, 2, 4, 8}) // false; 1, 2, 4, 8 bukan baris aritmatik, melainkan geometrik x2
+	fmt.Println(canMakeArithmeticProgression([]int{1, 5, 3}))    // true; 1, 3, 5 adalah baris aritmatik +2
+	fmt.Println(canMakeArithmeticProgression([]int{5, 1, 9}))    // true; 9, 5, 1 adalah baris aritmatik -4
+	fmt.Println(canMakeArithmeticProgression([]int{1, 2, 4, 8})) // false; 1, 2, 4, 8 bukan baris aritmatik, melainkan geometrik x2
 
 	// tesDeck()
 }
@@ -98,8 +99,20 @@ func findTheDifference(s string, t string) byte {
 
 // https://leetcode.com/problems/can-make-arithmetic-progression-from-sequence
 func canMakeArithmeticProgression(arr []int) bool {
-	// write code here
-	return false
+	sort.Ints(arr)
+
+	beda := arr[1] - arr[0]
+
+	for i := 2; i < len(arr); i++ {
+		kalo := arr[i] - arr[i-1]
+		if kalo != beda {
+			return false
+		}
+	}
+
+	// maap kak gak selesai
+
+	return true
 }
 
 // Deck represent "standard" deck consist of 52 cards
