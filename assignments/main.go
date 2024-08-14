@@ -16,9 +16,9 @@ func main() {
 	isAnagram("anak", "mana")       // false
 	isAnagram("anagram", "managra") // true
 
-	// findTheDifference("abcd", "abcde") // 'e'
-	// findTheDifference("abcd", "abced") // 'e'
-	// findTheDifference("", "y")         // 'y'
+	fmt.Println(findTheDifference("abcd", "abcde")) // 'e'
+	fmt.Println(findTheDifference("abcd", "abced")) // 'e'
+	fmt.Println(findTheDifference("", "y"))         // 'y'
 
 	// canMakeArithmeticProgression([]int{1, 5, 3})    // true; 1, 3, 5 adalah baris aritmatik +2
 	// canMakeArithmeticProgression([]int{5, 1, 9})    // true; 9, 5, 1 adalah baris aritmatik -4
@@ -63,11 +63,11 @@ func isAnagram(s string, t string) bool {
 
 	for _, hasil := range mapIsiStr {
 		if hasil != 0 {
-			fmt.Println(s, "dan", t, false)
+			fmt.Println(s, "dan", t, "=", false)
 			return false
 		}
 	}
-	fmt.Println(s, "dan", t, true)
+	fmt.Println(s, "dan", t, "=", true)
 	// fmt.Println(mapIsiStr)
 
 	return true
@@ -76,8 +76,24 @@ func isAnagram(s string, t string) bool {
 // https://leetcode.com/problems/find-the-difference
 func findTheDifference(s string, t string) byte {
 	// write code here
-	b := byte('a')
-	return b
+	mapIsiS := make(map[rune]int)
+	mapIsiT := make(map[rune]int)
+
+	for _, karakterS := range s {
+		mapIsiS[karakterS]++
+	}
+	for _, karakterT := range t {
+		mapIsiT[karakterT]++
+	}
+
+	for karakterT, countT := range mapIsiT {
+		countS := mapIsiS[karakterT]
+		if countT > countS {
+			fmt.Printf("yg beda = %c dalam byte :", karakterT)
+			return byte(karakterT)
+		}
+	}
+	return 0
 }
 
 // https://leetcode.com/problems/can-make-arithmetic-progression-from-sequence
